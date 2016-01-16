@@ -19,15 +19,15 @@ require('prototypes');
 var dbUrl = 'mongodb://localhost/lordOfTheRingsScript';
 
 var db = pmongo(dbUrl);
-var fellowshipCollection = db.collection('fellowship');
+var fellowshipCollection = db.collection('returnOftheKing');
 
-var scriptURL = "http://www.ageofthering.com/atthemovies/scripts/fellowshipofthering21to24.php";
+var scriptURL = "http://www.ageofthering.com/atthemovies/scripts/returnoftheking65to66.php";
 
 function generateScriptUrl(maxScene){
     var items = Math.floor(maxScene/4);
     var urlArr = [];
     for(var i = 1; i< items + 1; i++){
-        urlArr.push("http://www.ageofthering.com/atthemovies/scripts/fellowshipofthering"
+        urlArr.push("http://www.ageofthering.com/atthemovies/scripts/returnoftheking"
             + (i * 4 - 3) + "to" + i*4 + ".php")
     }
 
@@ -113,9 +113,9 @@ function splitScenes(textArr, sceneIndexArr){
     return out;
 }
 
-request(scriptURL, parseScript);
+//request(scriptURL, parseScript);
 
-var urlArr = generateScriptUrl(40);
+var urlArr = generateScriptUrl(76);
 urlArr.forEach(url => {
     request(url, parseScript);
 })
