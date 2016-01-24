@@ -49,11 +49,37 @@ function characterOccurenceParser(character){
         })
 }
 
-function characterMapping(character){
+function characterMapping(character, dataOutObj){
     var allSceneArr = Array.apply(null, new Array(37)).map(d => {return 0});
-    console.log(allSceneArr)
-}
+    charactersCollection.find({charName: { $eq:  character}}).toArray()
+        .then(docs => {
+            docs.forEach(doc => {
+                var scene = doc.sceneArr
+                scene.forEach(d => {
+                    var index = d.sceneNumber,
+                        occurence = d.occurence;
+                    allSceneArr[index -1] = occurence
+                });
 
-characterMapping()
+                console.log(allSceneArr);
+                dataOutObj[character] = allSceneArr;
+
+                count++;
+                console.log(count, dataOutObj)
+            })
+
+        });
+
+};
+
+//var charactersOfInterest = ["frodo", "sam", "legolas", "gimli", "pippin", "merry", "gandalf"];
+
+var charactersOfInterest = ["boromir"]
+
+var dataOut = {};
+
+charactersOfInterest.forEach(person => {
+    characterMapping(person, dataOut)
+});
 
 

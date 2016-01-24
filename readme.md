@@ -95,3 +95,5 @@ or for a specific scene:
    	</pre>
    	
 `db.find({characters: {$in:[ "elrond"]}})` for all the docs that has elrond as a character
+
+First attempt to plot small multiples http://blockbuilder.org/wwymak/ac4e43f0ac7ed3ef325f
